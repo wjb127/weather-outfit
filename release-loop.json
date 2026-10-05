@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "release": {
+    "app_key": "weather-outfit",
+    "version": "1.0.0",
+    "build": "1",
+    "revision": "working-source-2026-10-05"
+  },
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "authorization": {
+    "release": true,
+    "source": "User standing authorization 2026-10-02 and weekday automation-2 2026-10-05; global both stores, existing account routine creation/submission/publication, no purchases or credential replacement."
+  },
+  "stores": {
+    "android": {
+      "identifier": "com.wjbapps.weatheroutfit",
+      "admob": {
+        "app_id": "ca-app-pub-2803803669720807~4945414268",
+        "banner_id": "ca-app-pub-2803803669720807/9980360932",
+        "interstitial_id": ""
+      }
+    },
+    "ios": {
+      "identifier": "com.wjbapps.weatheroutfit",
+      "app_store_id": "",
+      "team_id": "9Q26686S8R",
+      "admob": {
+        "app_id": "ca-app-pub-2803803669720807~2977726478",
+        "banner_id": "ca-app-pub-2803803669720807/9351563130",
+        "interstitial_id": ""
+      }
+    }
+  },
+  "watch": {
+    "qa": [
+      "lib/ads.dart",
+      "lib/main.dart",
+      "lib/model.dart",
+      "lib/reminders.dart",
+      "lib/weather.dart",
+      "test/widget_test.dart",
+      "pubspec.yaml",
+      "pubspec.lock"
+    ]
+  },
+  "adapters": {},
+  "checkpoints": {}
+}

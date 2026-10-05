@@ -1,0 +1,36 @@
+name: Validate Weather Outfit iOS
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  native-ios:
+    runs-on: macos-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Install pinned Flutter
+        run: |
+          git clone --depth 1 --branch 3.47.5 https://github.com/flutter/flutter.git "$RUNNER_TEMP/flutter"
+          echo "$RUNNER_TEMP/flutter/bin" >> "$GITHUB_PATH"
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test test
+      - name: Build native simulator with test advertising only
+        run: flutter build ios --simulator --debug
+      - name: Start available iPhone simulator
+        run: |
+          xcrun simctl list devices available --json > "$RUNNER_TEMP/devices.json"
+          DEVICE=$(python3 -c 'import json,os; d=json.load(open(os.environ["RUNNER_TEMP"]+"/devices.json")); rows=[x for xs in d["devices"].values() for x in xs if x.get("isAvailable") and x["name"].startswith("iPhone")]; rows.sort(key=lambda x: ("Pro Max" in x["name"],x["name"]),reverse=True); print(rows[0]["udid"])')
+          xcrun simctl boot "$DEVICE" || true
+          xcrun simctl bootstatus "$DEVICE" -b
+          echo "IOS_DEVICE=$DEVICE" >> "$GITHUB_ENV"
+      - name: Exercise core native UI and capture actual English screens
+        run: flutter drive --driver=test_driver/screenshots.dart --target=integration_test/native_flow_test.dart -d "$IOS_DEVICE"
+      - name: Save native evidence to private draft release
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view native-evidence >/dev/null 2>&1 || gh release create native-evidence --draft --title 'Native validation evidence' --notes 'Automated native UI checks and screenshots.'
+          if test -d store-assets/screenshots; then gh release upload native-evidence store-assets/screenshots/*.png --clobber; fi

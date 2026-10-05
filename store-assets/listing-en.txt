@@ -1,0 +1,10 @@
+Today Weather Outfit
+Temperature-based outfits and customizable morning/evening reminders.
+
+Make tomorrow's wardrobe decision easier. Choose a worldwide city or enter your own coordinates and timezone. Weather Outfit turns forecast temperatures into editable clothing recommendations.
+
+Customize temperature boundaries and clothing combinations. Switch Celsius/Fahrenheit. Set 07:30 morning and 18:30 evening reminders, change their times and weekdays, and choose city or device local time. Reminders use downloaded forecasts; open regularly to refresh the next seven days. OS delivery may be delayed.
+
+Offline? Enter a temperature for a manual recommendation or consult saved forecasts with their download time. No account or background location tracking is required. Contains banner advertising with regional privacy choices.
+
+Weather data from MET Norway under CC BY 4.0.
