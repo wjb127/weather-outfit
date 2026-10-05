@@ -2,7 +2,7 @@ name: Upload verified Weather Outfit archive
 on:
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   upload:
     runs-on: macos-latest

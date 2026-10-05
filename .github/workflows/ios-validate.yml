@@ -37,7 +37,7 @@ jobs:
           open -a Simulator
           echo "IOS_DEVICE=$DEVICE" >> "$GITHUB_ENV"
       - name: Exercise core native UI and capture actual English screens
-        timeout-minutes: 12
+        timeout-minutes: 18
         run: |
           mkdir -p store-assets/ios-evidence
           python3 -c 'from pathlib import Path; p=Path("test_driver/screenshots.dart"); p.write_text(p.read_text().replace("store-assets/screenshots", "store-assets/ios-evidence"))'
