@@ -5,7 +5,7 @@ permissions:
   contents: write
 jobs:
   native-ios:
-    runs-on: macos-15-intel
+    runs-on: macos-latest
     timeout-minutes: 30
     strategy:
       fail-fast: false
