@@ -23,6 +23,8 @@ void main() {
       await t.tap(find.text('Recommend'));
       await t.pumpAndSettle();
       expect(find.text('Short sleeves + cardigan'), findsOneWidget);
+      await t.drag(find.byType(ListView), const Offset(0, 1200));
+      await t.pumpAndSettle();
       await binding.takeScreenshot('01-outfit-en');
       await t.tap(find.text('My rules'));
       await t.pumpAndSettle();

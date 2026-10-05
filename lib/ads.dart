@@ -46,7 +46,7 @@ class AdsController extends ChangeNotifier {
       ready = true;
       notifyListeners();
     } catch (_) {
-      /* Offline consent or ads must not stop the score sheet. */
+      /* Offline consent or ads must not stop outfit recommendations. */
     }
   }
 
@@ -57,6 +57,8 @@ class AdsController extends ChangeNotifier {
       ready = false;
       notifyListeners();
     } else if (!ready) {
+      await MobileAds.instance.initialize();
+      if (_closed) return;
       ready = true;
       notifyListeners();
     }
